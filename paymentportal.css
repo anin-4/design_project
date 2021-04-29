@@ -1,0 +1,29 @@
+body{
+    background-color: #272626;
+
+}
+.main{
+    height:80vh;
+    width:100vw;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header{
+    color:white;
+}
+
+.meter{
+    width:65vw;
+}
+
+.maker{
+    background-color: #464444;
+    color:rgb(221, 213, 213);
+}
+
+.maker2{
+    color:white;
+}
