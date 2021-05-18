@@ -29,9 +29,13 @@ app.post("/data", async (req, res) => {
   // const newUser = new User({ transactionID, name, amount });
   // newUser.save();
   const user = await User.findOne({ transactionID });
-  user.amount = 500;
-  await user.save();
-  res.json(user);
+  if (user) {
+    user.amount = 500;
+    await user.save();
+    res.json(user);
+  } else {
+    res.json({ status: false });
+  }
 });
 
 app.listen(4000, () => {
