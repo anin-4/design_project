@@ -93,6 +93,15 @@
         </div>
       </div>
       <% } %>
+      <%if(notdone!=''){%>
+        <div class="card maker">
+        <div class="card-header">wrong transaction ID</div>
+        <div class="card-body meter">
+          <h5 class="card-title"><%=notdone%></h5>
+          <a href="#" class="btn btn-success">Enter another transaction ID</a>
+        </div>
+      </div>
+        <% } %> 
     </div>
 
     <script

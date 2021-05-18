@@ -48,6 +48,7 @@ app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
   res.locals.done = req.flash("done");
+  res.locals.notdone = req.flash("notdone");
   next();
 });
 
@@ -122,10 +123,14 @@ app.post("/paymentPortal", async (req, res) => {
       },
     });
     const insertedData = await response.json();
-    // console.log(insertedData);
-    // res.redirect("/paymentPortal");
-    req.flash("done", `your payment to ${insertedData.name} was successful`);
-    res.redirect("/paymentPortal");
+    console.log(insertedData);
+    if ("status" in insertedData && insertedData.status == false) {
+      req.flash("notdone", `enter the correct transaction Id`);
+      res.redirect("/paymentPortal");
+    } else {
+      req.flash("done", `your payment to ${insertedData.name} was successful`);
+      res.redirect("/paymentPortal");
+    }
   } catch (e) {
     req.flash("error", e.message);
     res.redirect("/paymentPortal");
