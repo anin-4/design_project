@@ -24,13 +24,11 @@ app.use(express.json());
 
 app.post("/data", async (req, res) => {
   const { transactionID } = req.body;
-  // const name = "santosh";
-  // const amount = 200;
-  // const newUser = new User({ transactionID, name, amount });
-  // newUser.save();
   const user = await User.findOne({ transactionID });
   if (user) {
-    user.amount = 500;
+    let min = user.amount;
+    let max = 1000;
+    user.amount = Math.floor(Math.random() * (max - min + 1)) + min;
     await user.save();
     res.json(user);
   } else {
